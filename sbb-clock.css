@@ -1,7 +1,6 @@
 .clock {
     position: absolute;
     inset: 0;
-    width: 62%;
     aspect-ratio: 1/1;
     display: grid;
     transform-style: preserve-3d;
@@ -14,13 +13,15 @@
 .clock-leaf-back,
 .clock-leaf-front {
     background-color: #FFF;
-    width: 95%;
-    height: 95%;
+    width: 90%;
+    height: 90%;
     border-radius: 50%;
 }
 
 .clock-leaf-back {
-    background-color: aqua;
+    width: 100%;
+    height: 100%;
+    background-color: red;
 }
 
 .clock-leaf-front {
@@ -29,21 +30,21 @@
 .clock-leaf-glas {
     background-color: #FFF;
     opacity: 0.2;
-    width: 105%;
-    height: 105%;
+    width: 100%;
+    height: 100%;
     transform: translateZ(20px);
     border-radius: 50%;
 }
 
 .clock-leaf-back {
-    transform: rotateY(180deg) translateZ(0) translateX(-5%) translateY(5%);
+    transform: rotateY(180deg) translateZ(0);
 }
 
 .clock-cylinder {
     grid-area: 1/1;
     position: relative;
-    width: 105%;
-    height: 105%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     transform-style: preserve-3d;
 }
