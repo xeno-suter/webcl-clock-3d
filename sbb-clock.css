@@ -1,0 +1,33 @@
+.clock {
+    position: absolute;
+    inset: 0;
+    width: 62%;
+    aspect-ratio: 1/1;
+    display: grid;
+    transform-style: preserve-3d;
+}
+
+.clock>* {
+    grid-area: 1/1;
+}
+
+.clock-leaf-back,
+.clock-leaf-front {
+    background-color: #FFF;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+}
+
+.clock-leaf-back {
+    background-color: aqua;
+}
+
+.clock-leaf-front {
+    transform: translateZ(10px) translateX(5%) translateY(5%);
+}
+
+.clock-leaf-back {
+    transform: rotateY(180deg) translateZ(0) translateX(-5%) translateY(5%);
+}
+
