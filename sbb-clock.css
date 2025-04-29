@@ -26,8 +26,36 @@
 .clock-leaf-front {
     transform: translateZ(10px) translateX(5%) translateY(5%);
 }
+.clock-leaf-glas {
+    background-color: #FFF;
+    opacity: 0.2;
+    width: 105%;
+    height: 105%;
+    transform: translateZ(20px);
+    border-radius: 50%;
+}
 
 .clock-leaf-back {
     transform: rotateY(180deg) translateZ(0) translateX(-5%) translateY(5%);
 }
 
+.clock-cylinder {
+    grid-area: 1/1;
+    position: relative;
+    width: 105%;
+    height: 105%;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+.ring-slice {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+    mask: radial-gradient(circle, transparent 60%, black 61%);
+}
