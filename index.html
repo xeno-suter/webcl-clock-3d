@@ -25,37 +25,6 @@
             color: white;
             font-size: 120%;
         }
-
-        .floor {
-            position: absolute;
-            inset: -100% -100%;
-            width: 200%;
-            height: 200%;
-            background-image: repeating-conic-gradient(transparent 0deg 90deg, black 90deg 180deg);
-            background-size: 8cqmin 8cqmin;
-            opacity: 0.3;
-
-            & .toplight {
-                position: absolute;
-                inset: 0;
-                background-image: radial-gradient(white 30%, black 80%);
-                opacity: .85;
-            }
-        }
-
-        .triangle {
-            position: absolute;
-            inset: 0;
-            width: 62%;
-            aspect-ratio: 1/1;
-            background-color: limegreen;
-            clip-path: circle(100% at 0 0);
-            opacity: 0.5;
-        }
-
-        .triangle:nth-child(4) {
-            background-color: lime;
-        }
     </style>
 </head>
 
@@ -64,39 +33,27 @@
         <div class="coords">
             <div class="plane xy-plane">xy</div>
             <div class="plane xz-plane">xz</div>
+
+            <!--
             <div class="floor">
                 <div class="toplight"></div>
             </div>
+            -->
 
             <div class="clock">
-                <div class="clock-edge"></div>
-                <div class="clock-cylinder">
-                    <div class="ring-slice" style="transform: translateZ(1px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(2px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(3px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(4px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(5px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(6px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(7px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(8px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(9px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(10px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(11px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(12px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(13px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(14px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(15px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(16px);"></div>
-                    <div class="ring-slice" style="transform: 
-                    translateZ(17px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(18px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(19px);"></div>
-                    <div class="ring-slice" style="transform: translateZ(20px);"></div>
+                <div class="clock-face">
+                    <div class="markers"></div>
+
+                    <div class="hand hour-hand"></div>
+                    <div class="hand minute-hand"></div>
+                    <div class="hand second-hand"></div>
                 </div>
 
-                <div class="clock-leaf-back"></div>
-                <div class="clock-leaf-front"></div>
-                <div class="clock-leaf-glas"></div>
+                <div class="clock-body">
+                    <div class="wall wall-back"></div>
+
+
+                </div>
             </div>
         </div>
     </main>
@@ -105,7 +62,31 @@
     </footer>
 
     <script>
+        function createMarkers() {
+            const markersContainer = document.querySelector('.markers');
+            markersContainer.innerHTML = '';
 
+            for (let z = 0; z < 10; z++) {
+                for (let i = 0; i < 12; i++) {
+                    const marker = document.createElement('div');
+                    marker.className = 'marker';
+                    const degrees = i * 30; // 360 / 12 = 30 per hour
+                    marker.style.transform = `rotate(${degrees}deg) translateZ(${z * 0.4}px)`;
+
+                    markersContainer.appendChild(marker);
+
+                    for (let j = 1; j <= 4; j++) {
+                        const smallMarker = document.createElement('div');
+                        smallMarker.className = 'marker small';
+                        const smallDegrees = degrees + (j * 6); // 30 / 5 = 6 per small marker
+                        smallMarker.style.transform = `rotate(${smallDegrees}deg) translateZ(${z * 0.4}px)`;
+                        markersContainer.appendChild(smallMarker);
+                    }
+                }
+            }
+        }
+
+        createMarkers();
         registerForMouseAndTouch(main);
 
     </script>

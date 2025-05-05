@@ -1,62 +1,110 @@
 .clock {
-    position: absolute;
-    inset: 0;
-    aspect-ratio: 1/1;
-    display: grid;
+    /*animation: rotate 20s infinite linear;*/
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateX(20deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(20deg) rotateY(360deg);
+    }
+}
+
+.clock {
+    width: 300px;
+    height: 300px;
     transform-style: preserve-3d;
+    position: absolute;
 }
 
-.clock>* {
-    grid-area: 1/1;
-}
-
-.clock-leaf-back,
-.clock-leaf-front {
-    background-color: #FFF;
-    width: 90%;
-    height: 90%;
+.clock-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
     border-radius: 50%;
-}
-
-.clock-leaf-back {
-    width: 100%;
-    height: 100%;
-    background-color: red;
-}
-
-.clock-leaf-front {
-    transform: translateZ(10px) translateX(5%) translateY(5%);
-}
-.clock-leaf-glas {
-    background-color: #FFF;
-    opacity: 0.2;
-    width: 100%;
-    height: 100%;
     transform: translateZ(20px);
-    border-radius: 50%;
-}
-
-.clock-leaf-back {
-    transform: rotateY(180deg) translateZ(0);
-}
-
-.clock-cylinder {
-    grid-area: 1/1;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
     transform-style: preserve-3d;
 }
 
-.ring-slice {
+.clock-body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: red;
+    transform-style: preserve-3d;
+}
+
+.wall {
+    position: absolute;
+    background: #333;
+    transform-style: preserve-3d;
+}
+
+.wall-back {
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    top: 0;
-    left: 0;
-    -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
-    mask: radial-gradient(circle, transparent 60%, black 61%);
+    transform: translateZ(-20px);
+    background: #222;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background: #333;
+    border-radius: 4px;
+}
+
+.hour-hand {
+    width: 8px;
+    height: 80px;
+    background: #000;
+    transform: translateX(-50%) rotate(0deg);
+}
+
+.minute-hand {
+    width: 6px;
+    height: 110px;
+    background: #000;
+    transform: translateX(-50%) rotate(0deg);
+}
+
+.second-hand {
+    width: 2px;
+    height: 120px;
+    background: #e30613;
+    transform: translateX(-50%) rotate(0deg);
+}
+
+.markers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.marker {
+    position: absolute;
+    width: 8px;
+    height: 31px;
+    left: 50%;
+    transform-origin: 0% 150px;
+    border-top: 4px transparent solid;
+}
+
+.marker::after {
+    content: '';
+    background-color: #333;
+    width: 8px;
+    height: 31px;
+    display: block;
+}
+
+.marker.small::after {
+    height: 15px;
+    width: 4px;
 }
