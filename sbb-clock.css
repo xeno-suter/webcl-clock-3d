@@ -1,5 +1,9 @@
+main {
+    background-size: cover;
+}
+
 .clock {
-    /*animation: rotate 20s infinite linear;*/
+    animation: rotate 20s infinite linear;
 }
 
 @keyframes rotate {
