@@ -47,6 +47,8 @@
                     <div class="hand hour-hand"></div>
                     <div class="hand minute-hand"></div>
                     <div class="hand second-hand"></div>
+
+                    <div class="hand circle-dot"></div>
                 </div>
 
                 <div class="clock-slice"></div>
@@ -63,6 +65,24 @@
     </footer>
 
     <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourAngle = (hours * 30) + (minutes * 0.5);
+            const minuteAngle = minutes * 6;
+            const secondAngle = seconds * 6;
+
+            const clock = document.querySelector('.clock');
+            clock.style.setProperty('--hour-hand-rotation', `${hourAngle}deg`);
+            clock.style.setProperty('--minute-hand-rotation', `${minuteAngle}deg`);
+            clock.style.setProperty('--second-hand-rotation', `${secondAngle}deg`);
+
+            setTimeout(updateClock, 1000 - (now.getMilliseconds()));
+        }
+
         function createClockBorder() {
             const sliceContainer = document.querySelector('.clock-slice');
             const numberOfBricks = 40;
@@ -91,7 +111,6 @@
                 sliceContainer.appendChild(brick);
             }
         }
-        createClockBorder();
 
         function createMarkers() {
             const markersContainer = document.querySelector('.markers');
@@ -122,6 +141,8 @@
             }
         }
 
+        updateClock();
+        createClockBorder();
         createMarkers();
         registerForMouseAndTouch(main);
 

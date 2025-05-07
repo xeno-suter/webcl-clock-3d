@@ -66,24 +66,78 @@ main {
 }
 
 .hour-hand {
-    width: 8px;
+    width: 9px;
     height: 80px;
     background: #000;
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%) rotate(var(--hour-hand-rotation, 0deg));
+    transition: transform 1s linear;
+
+
+    &::before {
+        content: '';
+        background-color: #000;
+        width: 9px;
+        height: 20px;
+        display: block;
+        top: 100%;
+        position: absolute;
+    }
 }
 
 .minute-hand {
-    width: 6px;
+    width: 7px;
     height: 110px;
     background: #000;
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%) rotate(var(--minute-hand-rotation, 0deg));
+    transition: transform 1s linear;
+
+    &::before {
+        content: '';
+        background-color: #000;
+        width: 7px;
+        height: 25px;
+        display: block;
+        top: 100%;
+        position: absolute;
+    }
 }
 
 .second-hand {
-    width: 2px;
+    width: 3px;
     height: 120px;
     background: #e30613;
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%) rotate(var(--second-hand-rotation, 0deg));
+    transition: transform 1s linear;
+
+    &::after {
+        content: '';
+        background-color: #e30613;
+        border-radius: 50%;
+        width: 21px;
+        height: 21px;
+        left: -9px;
+        position: absolute;
+        display: block;
+    }
+
+    &::before {
+        content: '';
+        background-color: #e30613;
+        width: 3px;
+        height: 30px;
+        display: block;
+        top: 100%;
+        position: absolute;
+    }
+}
+
+.circle-dot {
+    border-radius: 50%;
+    background-color: #e30613;
+    width: 8px;
+    height: 8px;
+    left: calc(50% - 4px);
+    top: calc(50% - 4px);
 }
 
 .markers {
