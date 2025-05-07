@@ -49,10 +49,11 @@
                     <div class="hand second-hand"></div>
                 </div>
 
+                <div class="clock-slice"></div>
+
                 <div class="clock-body">
                     <div class="wall wall-back"></div>
-
-
+                    <div class="clock-slice-cover"></div>
                 </div>
             </div>
         </div>
@@ -62,6 +63,36 @@
     </footer>
 
     <script>
+        function createClockBorder() {
+            const sliceContainer = document.querySelector('.clock-slice');
+            const numberOfBricks = 40;
+            const radius = 140;
+            const brickWidth = 25;
+            const brickHeight = 40;
+            const brickDepth = 100;
+
+            for (let i = 0; i < numberOfBricks; i++) {
+                const brick = document.createElement('div');
+                brick.className = 'brick';
+
+                const angle = (i * 360) / numberOfBricks;
+
+                brick.style.transform = `
+                    translate(-50%, -50%) 
+                    rotateY(${angle}deg) 
+                    translateZ(${radius}px) 
+                    rotateX(90deg)
+                `;
+
+                brick.style.setProperty('--brick-width', `${brickWidth}px`);
+                brick.style.setProperty('--brick-height', `${brickHeight}px`);
+                brick.style.setProperty('--brick-depth', `${brickDepth}px`);
+
+                sliceContainer.appendChild(brick);
+            }
+        }
+        createClockBorder();
+
         function createMarkers() {
             const markersContainer = document.querySelector('.markers');
             markersContainer.innerHTML = '';
@@ -71,7 +102,9 @@
                     const marker = document.createElement('div');
                     marker.className = 'marker';
                     const degrees = i * 30; // 360 / 12 = 30 per hour
-                    marker.style.transform = `rotate(${degrees}deg) translateZ(${z * 0.4}px)`;
+
+                    marker.style.setProperty('--rotation', `${degrees}deg`);
+                    marker.style.setProperty('--z-depth', `${z * 0.4}px`);
 
                     markersContainer.appendChild(marker);
 
@@ -79,7 +112,10 @@
                         const smallMarker = document.createElement('div');
                         smallMarker.className = 'marker small';
                         const smallDegrees = degrees + (j * 6); // 30 / 5 = 6 per small marker
-                        smallMarker.style.transform = `rotate(${smallDegrees}deg) translateZ(${z * 0.4}px)`;
+
+                        smallMarker.style.setProperty('--rotation', `${smallDegrees}deg`);
+                        smallMarker.style.setProperty('--z-depth', `${z * 0.4}px`);
+
                         markersContainer.appendChild(smallMarker);
                     }
                 }
